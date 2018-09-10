@@ -100,36 +100,36 @@ function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
 }
 function add() {
-	// iframe层
-	layer.open({
-		type : 2,
-		title : '增加用户',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/add'
-	});
-}
-function remove(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : "/sys/user/remove",
-			type : "post",
-			data : {
-				'id' : id
-			},
-			success : function(r) {
-				if (r.code == 0) {
-					layer.msg(r.msg);
-					reLoad();
-				} else {
-					layer.msg(r.msg);
-				}
-			}
+		// iframe层
+		layer.open({
+			type : 2,
+			title : '增加用户',
+			maxmin : true,
+			shadeClose : false, // 点击遮罩关闭层
+			area : [ '800px', '520px' ],
+			content : prefix + '/add'
 		});
-	})
+	}
+	function remove(id) {
+		layer.confirm('确定要删除选中的记录？', {
+			btn : [ '确定', '取消' ]
+		}, function() {
+			$.ajax({
+				url : "/sys/user/remove",
+				type : "post",
+				data : {
+					'id' : id
+				},
+				success : function(r) {
+					if (r.code == 0) {
+						layer.msg(r.msg);
+						reLoad();
+					} else {
+						layer.msg(r.msg);
+					}
+				}
+			});
+		})
 }
 function edit(id) {
 	layer.open({

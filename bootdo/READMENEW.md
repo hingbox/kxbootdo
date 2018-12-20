@@ -2,6 +2,335 @@
 
 1. 分词api参考：http://www.pullword.com/
 
+可以调用这个接口：http://123.206.46.153:7911/wordcloud/ 
+请求方式 post请求 参数 json格式 
+请求参数示例：
+{
+	"content":"安迪苏(600299)近期国内猪肉价格持续低迷，而且这种情况有分析认为将要持续二年左右时间，请问董秘这种情况对公司产品销量会产生多大影响？是否意味着公司产品价格也将继续在低位震荡？另外国际市场是否也存在相类似情况。谢谢！"
+
+}
+返回结果示例：
+{
+  "aggs_result": [
+    {
+      "name": "名词",
+      "value": 16
+    },
+    {
+      "name": "动词",
+      "value": 14
+    },
+    {
+      "name": "未知",
+      "value": 3
+    },
+    {
+      "name": "数词",
+      "value": 3
+    },
+    {
+      "name": "连词",
+      "value": 2
+    }
+  ],
+  "detail_result": {
+    "代词": [
+      {
+        "name": "这种",
+        "value": 2
+      }
+    ],
+    "副词": [
+      {
+        "name": "将要",
+        "value": 1
+      }
+    ],
+    "动词": [
+      {
+        "name": "是否",
+        "value": 2
+      },
+      {
+        "name": "持续",
+        "value": 2
+      },
+      {
+        "name": "继续",
+        "value": 1
+      },
+      {
+        "name": "存在",
+        "value": 1
+      },
+      {
+        "name": "分析",
+        "value": 1
+      }
+    ],
+    "名词": [
+      {
+        "name": "情况",
+        "value": 3
+      },
+      {
+        "name": "公司",
+        "value": 2
+      },
+      {
+        "name": "低位",
+        "value": 1
+      },
+      {
+        "name": "价格",
+        "value": 1
+      },
+      {
+        "name": "谢谢",
+        "value": 1
+      }
+    ],
+    "处所词": [
+      {
+        "name": "国内",
+        "value": 1
+      }
+    ],
+    "数词": [
+      {
+        "name": "600299",
+        "value": 1
+      },
+      {
+        "name": "二年",
+        "value": 1
+      },
+      {
+        "name": "左右",
+        "value": 1
+      }
+    ],
+    "时间词": [
+      {
+        "name": "近期",
+        "value": 1
+      }
+    ],
+    "未知": [
+      {
+        "name": "安迪苏",
+        "value": 1
+      },
+      {
+        "name": "董秘",
+        "value": 1
+      },
+      {
+        "name": "多大",
+        "value": 1
+      }
+    ],
+    "连词": [
+      {
+        "name": "而且",
+        "value": 1
+      },
+      {
+        "name": "另外",
+        "value": 1
+      }
+    ]
+  },
+  "error": false,
+  "info": "",
+  "result": [
+    {
+      "flag": "名词",
+      "name": "情况",
+      "value": 3
+    },
+    {
+      "flag": "代词",
+      "name": "这种",
+      "value": 2
+    },
+    {
+      "flag": "名词",
+      "name": "公司",
+      "value": 2
+    },
+    {
+      "flag": "动词",
+      "name": "持续",
+      "value": 2
+    },
+    {
+      "flag": "动词",
+      "name": "是否",
+      "value": 2
+    },
+    {
+      "flag": "名词",
+      "name": "价格",
+      "value": 1
+    },
+    {
+      "flag": "未知",
+      "name": "多大",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "意味着",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "类似",
+      "value": 1
+    },
+    {
+      "flag": "连词",
+      "name": "而且",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "分析",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "存在",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "继续",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "震荡",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "产品",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "低位",
+      "value": 1
+    },
+    {
+      "flag": "数词",
+      "name": "600299",
+      "value": 1
+    },
+    {
+      "flag": "处所词",
+      "name": "国内",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "猪肉",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "产品价格",
+      "value": 1
+    },
+    {
+      "flag": "未知",
+      "name": "董秘",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "销量",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "国际",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "谢谢",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "低迷",
+      "value": 1
+    },
+    {
+      "flag": "数词",
+      "name": "左右",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "认为",
+      "value": 1
+    },
+    {
+      "flag": "副词",
+      "name": "将要",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "时间",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "市场",
+      "value": 1
+    },
+    {
+      "flag": "时间词",
+      "name": "近期",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "影响",
+      "value": 1
+    },
+    {
+      "flag": "连词",
+      "name": "另外",
+      "value": 1
+    },
+    {
+      "flag": "未知",
+      "name": "安迪苏",
+      "value": 1
+    },
+    {
+      "flag": "数词",
+      "name": "二年",
+      "value": 1
+    },
+    {
+      "flag": "动词",
+      "name": "请问",
+      "value": 1
+    },
+    {
+      "flag": "名词",
+      "name": "产生",
+      "value": 1
+    }
+  ]
+}
 
 2. 具体需求
 a.根据筛选条件进行查询，查询条件为(时间，问，答，关键词)
@@ -29,3 +358,7 @@ CREATE TABLE `t_qa` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1438459 DEFAULT CHARSET=utf8;
 
 分词主要是对 上面表中 content字段 进行统计分析，
+
+
+
+4. 2018-12-20 新加了一个测试模块  模块包名cipin

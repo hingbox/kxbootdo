@@ -156,6 +156,17 @@ function remove(id) {
 
 function resetPwd(id) {
 }
+
+//导出Excel type导出的类型
+//type 1 导出当页数据 2 导出全部数据 3 导出符合条件全部数据
+function exportExcel(type) {
+	//获取table的分页参数值
+	var offset = $('#exampleTable').bootstrapTable('getOptions').pageSize;
+	var limit = $('#exampleTable').bootstrapTable('getOptions').pageNumber * offset;
+	data = 'limit='+limit+'&offset='+offset;
+	//后端导出的方法
+	document.location.href = prefix + "/exportExcel?type="+type+"&"+ data;
+}
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {

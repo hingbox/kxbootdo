@@ -361,3 +361,21 @@ CREATE TABLE `t_qa` (
 
 
 4. 2018-12-20 新加了一个测试模块  模块包名cipin
+5. 2018-12-21 
+    新添加了一张表 t_cipin 用户存放词频信息
+    表结构如下：
+    SET FOREIGN_KEY_CHECKS=0;
+    -- ----------------------------
+    -- Table structure for `t_cipin`
+    -- ----------------------------
+    DROP TABLE IF EXISTS `t_cipin`;
+    CREATE TABLE `t_cipin` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `content` text COMMENT '内容',
+      `pub_date` varchar(30) DEFAULT NULL COMMENT '发布日期',
+      `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+    
+    将每天查询的数据 分词之后 存到上面表中
+    

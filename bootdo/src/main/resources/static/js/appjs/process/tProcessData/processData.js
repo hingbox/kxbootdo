@@ -1,5 +1,5 @@
 
-var prefix = "/process/tProcessData"
+var prefix = "/process/processData"
 $(function() {
 	load();
 });
@@ -32,8 +32,8 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset,
-					           	name:$('#searchName').val(),
+								offset:params.offset
+					           // name:$('#searchName').val(),
 					           // username:$('#searchName').val()
 							};
 						},
@@ -49,23 +49,23 @@ function load() {
 								},
 																{
 									field : 'id', 
-									title : 'id'
+									title : '' 
 								},
 																{
 									field : 'name', 
-									title : '词频'
+									title : '' 
 								},
 																{
 									field : 'value', 
-									title : '出现次数'
+									title : '' 
 								},
 																{
 									field : 'pubDate', 
-									title : '发布日期'
+									title : '' 
 								},
 																{
 									field : 'createDate', 
-									title : '创建日期'
+									title : '' 
 								},
 																{
 									title : '操作',

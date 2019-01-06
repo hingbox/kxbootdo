@@ -19,24 +19,24 @@ import java.util.Map;
  * 
  * @author chglee
  * @email 1992lcg@163.com
- * @date 2018-12-21 15:13:16
+ * @date 2018-12-22 21:14:14
  */
  
 @Controller
-@RequestMapping("/cipin/qa/processData")
+@RequestMapping("/process/processData")
 public class ProcessDataController {
 	@Autowired
 	private ProcessDataService processDataService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:processData:processData")
+	@RequiresPermissions("process:processData:processData")
 	String ProcessData(){
-	    return "system/processData/processData";
+	    return "process/processData/processData";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:processData:processData")
+	@RequiresPermissions("process:processData:processData")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -47,17 +47,17 @@ public class ProcessDataController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("system:processData:add")
+	@RequiresPermissions("process:processData:add")
 	String add(){
-	    return "system/processData/add";
+	    return "process/processData/add";
 	}
 
 	@GetMapping("/edit/{id}")
-	@RequiresPermissions("system:processData:edit")
+	@RequiresPermissions("process:processData:edit")
 	String edit(@PathVariable("id") Integer id,Model model){
 		ProcessDataDO processData = processDataService.get(id);
 		model.addAttribute("processData", processData);
-	    return "system/processData/edit";
+	    return "process/processData/edit";
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class ProcessDataController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("system:processData:add")
+	@RequiresPermissions("process:processData:add")
 	public R save( ProcessDataDO processData){
 		if(processDataService.save(processData)>0){
 			return R.ok();
@@ -77,7 +77,7 @@ public class ProcessDataController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("system:processData:edit")
+	@RequiresPermissions("process:processData:edit")
 	public R update( ProcessDataDO processData){
 		processDataService.update(processData);
 		return R.ok();
@@ -88,7 +88,7 @@ public class ProcessDataController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("system:processData:remove")
+	@RequiresPermissions("process:processData:remove")
 	public R remove( Integer id){
 		if(processDataService.remove(id)>0){
 		return R.ok();
@@ -101,7 +101,7 @@ public class ProcessDataController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("system:processData:batchRemove")
+	@RequiresPermissions("process:processData:batchRemove")
 	public R remove(@RequestParam("ids[]") Integer[] ids){
 		processDataService.batchRemove(ids);
 		return R.ok();

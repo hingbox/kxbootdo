@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bootdo.cipin.dao.ProcessDataDao">
+<mapper namespace="com.bootdo.cipin.dao.TotalContentDao">
 
-	<select id="get" resultType="com.bootdo.cipin.domain.ProcessDataDO">
-		select `id`,`name`,`value`,`pub_date`,`create_date` from t_process_data where id = #{value}
+	<select id="get" resultType="com.bootdo.cipin.domain.TotalContentDO">
+		select `id`,`total_content`,`pub_date`,`create_date` from t_total_content where id = #{value}
 	</select>
 
-	<select id="list" resultType="com.bootdo.cipin.domain.ProcessDataDO">
-		select `id`,`name`,`value`,`pub_date`,`create_date` from t_process_data
+	<select id="list" resultType="com.bootdo.cipin.domain.TotalContentDO">
+		select `id`,`total_content`,`pub_date`,`create_date` from t_total_content
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="name != null and name != ''"> and name = #{name} </if>
-		  		  <if test="value != null and value != ''"> and value = #{value} </if>
+		  		  <if test="totalContent != null and totalContent != ''"> and total_content = #{totalContent} </if>
 		  		  <if test="pubDate != null and pubDate != ''"> and pub_date = #{pubDate} </if>
 		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
 		  		</where>
@@ -21,7 +20,7 @@
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by value desc
+                order by id desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
@@ -30,38 +29,36 @@
 	</select>
 	
  	<select id="count" resultType="int">
-		select count(*) from t_process_data
+		select count(*) from t_total_content
 		 <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="name != null and name != ''"> and name = #{name} </if>
-		  		  <if test="value != null and value != ''"> and value = #{value} </if>
+		  		  <if test="totalContent != null and totalContent != ''"> and total_content = #{totalContent} </if>
 		  		  <if test="pubDate != null and pubDate != ''"> and pub_date = #{pubDate} </if>
 		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.bootdo.cipin.domain.ProcessDataDO" useGeneratedKeys="true" keyProperty="id">
-		insert into t_process_data
+	<insert id="save" parameterType="com.bootdo.cipin.domain.TotalContentDO">
+		insert into t_total_content
 		(
-			`name`, 
-			`value`, 
+			`id`, 
+			`total_content`, 
 			`pub_date`, 
 			`create_date`
 		)
 		values
 		(
-			#{name}, 
-			#{value}, 
+			#{id}, 
+			#{totalContent}, 
 			#{pubDate}, 
 			#{createDate}
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.bootdo.cipin.domain.ProcessDataDO">
-		update t_process_data 
+	<update id="update" parameterType="com.bootdo.cipin.domain.TotalContentDO">
+		update t_total_content 
 		<set>
-			<if test="name != null">`name` = #{name}, </if>
-			<if test="value != null">`value` = #{value}, </if>
+			<if test="totalContent != null">`total_content` = #{totalContent}, </if>
 			<if test="pubDate != null">`pub_date` = #{pubDate}, </if>
 			<if test="createDate != null">`create_date` = #{createDate}</if>
 		</set>
@@ -69,11 +66,11 @@
 	</update>
 	
 	<delete id="remove">
-		delete from t_process_data where id = #{value}
+		delete from t_total_content where id = #{value}
 	</delete>
 	
 	<delete id="batchRemove">
-		delete from t_process_data where id in 
+		delete from t_total_content where id in 
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

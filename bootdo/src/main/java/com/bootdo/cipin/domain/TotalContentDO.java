@@ -1,4 +1,4 @@
-package com.bootdo.process.domain;
+package com.bootdo.cipin.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,20 +10,18 @@ import java.util.Date;
  * 
  * @author chglee
  * @email 1992lcg@163.com
- * @date 2018-12-21 16:09:46
+ * @date 2018-12-22 21:02:32
  */
-public class TProcessDataDO implements Serializable {
+public class TotalContentDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//
 	private Integer id;
-	//
-	private String name;
-	//
-	private Integer value;
-	//
+	//每天查询的内容汇总
+	private String totalContent;
+	//发布时间
 	private String pubDate;
-	//
+	//创建时间
 	private Date createDate;
 
 	/**
@@ -39,49 +37,37 @@ public class TProcessDataDO implements Serializable {
 		return id;
 	}
 	/**
-	 * 设置：
+	 * 设置：每天查询的内容汇总
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setTotalContent(String totalContent) {
+		this.totalContent = totalContent;
 	}
 	/**
-	 * 获取：
+	 * 获取：每天查询的内容汇总
 	 */
-	public String getName() {
-		return name;
+	public String getTotalContent() {
+		return totalContent;
 	}
 	/**
-	 * 设置：
-	 */
-	public void setValue(Integer value) {
-		this.value = value;
-	}
-	/**
-	 * 获取：
-	 */
-	public Integer getValue() {
-		return value;
-	}
-	/**
-	 * 设置：
+	 * 设置：发布时间
 	 */
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
 	/**
-	 * 获取：
+	 * 获取：发布时间
 	 */
 	public String getPubDate() {
 		return pubDate;
 	}
 	/**
-	 * 设置：
+	 * 设置：创建时间
 	 */
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 	/**
-	 * 获取：
+	 * 获取：创建时间
 	 */
 	public Date getCreateDate() {
 		return createDate;

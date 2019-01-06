@@ -1,11 +1,12 @@
 package com.bootdo.api;
 
-import com.bootdo.cipin.domain.CipinDO;
 import com.bootdo.cipin.domain.ProcessDataDO;
 import com.bootdo.cipin.domain.QaDO;
+import com.bootdo.cipin.domain.TotalContentDO;
 import com.bootdo.cipin.service.CipinService;
 import com.bootdo.cipin.service.ProcessDataService;
 import com.bootdo.cipin.service.QaService;
+import com.bootdo.cipin.service.TotalContentService;
 import com.bootdo.util.HttpClientUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -47,6 +48,8 @@ public class CiPinController {
     private CipinService cipinService;
     @Autowired
     private ProcessDataService processDataService;
+    @Autowired
+    private TotalContentService totalContentService;
 
     /**
      * 获取原始数据 查询每一天的数，将返回的content 合并起来，调用第三方的接口，进行分词
@@ -67,15 +70,22 @@ public class CiPinController {
         for (QaDO qa : list) {
             content += qa.getContent();
         }
+        //查询每天的内容 进行汇总
+        TotalContentDO totalContentDO = new TotalContentDO();
+        totalContentDO.setTotalContent(content);
+        totalContentDO.setPubDate(pubDate);
+        totalContentDO.setCreateDate(new Date());
+        totalContentService.save(totalContentDO);
+
         String result = HttpClientUtils.httpPostWithJson(content, "http://123.206.46.153:7911/wordcloud/", null);
         JSONObject data = JSONObject.fromObject(result);
         String resultData = data.getString("result");
-        //原始数据保存到t_cipin
-        CipinDO cipinDo = new CipinDO();
-        cipinDo.setContent(resultData);
-        cipinDo.setPubDate(pubDate);
-        cipinDo.setCreateDate(new Date());
-        cipinService.save(cipinDo);
+//        //原始数据保存到t_cipin
+//        CipinDO cipinDo = new CipinDO();
+//        cipinDo.setContent(resultData);
+//        cipinDo.setPubDate(pubDate);
+//        cipinDo.setCreateDate(new Date());
+//        cipinService.save(cipinDo);
 
         JSONArray myJsonArray = JSONArray.fromObject(resultData);
         if(myJsonArray.size()>0){

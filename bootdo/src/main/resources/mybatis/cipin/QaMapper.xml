@@ -8,7 +8,14 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.cipin.domain.QaDO">
-		select `id`,`uuid`,`nick_name`,`pub_date`,`content`,`source`,`stock`,`code`,`qa`,`create_date` from t_qa
+		select `id`,`uuid`,`nick_name`,`pub_date`,`content`,CASE `source`
+		WHEN 'sh' THEN '上海'
+		WHEN 'sz' THEN '深圳'
+		ELSE '其他' END as source,`stock`,`code`,
+		CASE `qa`
+		WHEN '0' THEN '提问'
+		WHEN '1' THEN '回答'
+		ELSE '其他' END as qa,`create_date` from t_qa
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="uuid != null and uuid != ''"> and uuid = #{uuid} </if>

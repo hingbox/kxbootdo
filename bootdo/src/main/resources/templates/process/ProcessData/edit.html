@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -9,28 +9,29 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${processData.id}"  type="hidden">
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">：</label>
 								<div class="col-sm-8">
-									<input id="name" name="name" class="form-control" type="text">
+									<input id="name" name="name" th:value="${processData.name}" class="form-control" type="text">
 								</div>
 							</div>
 														<div class="form-group">	
 								<label class="col-sm-3 control-label">：</label>
 								<div class="col-sm-8">
-									<input id="value" name="value" class="form-control" type="text">
+									<input id="value" name="value" th:value="${processData.value}" class="form-control" type="text">
 								</div>
 							</div>
 														<div class="form-group">	
 								<label class="col-sm-3 control-label">：</label>
 								<div class="col-sm-8">
-									<input id="pubDate" name="pubDate" class="form-control" type="text">
+									<input id="pubDate" name="pubDate" th:value="${processData.pubDate}" class="form-control" type="text">
 								</div>
 							</div>
 														<div class="form-group">	
 								<label class="col-sm-3 control-label">：</label>
 								<div class="col-sm-8">
-									<input id="createDate" name="createDate" class="form-control" type="text">
+									<input id="createDate" name="createDate" th:value="${processData.createDate}" class="form-control" type="text">
 								</div>
 							</div>
 																					<div class="form-group">
@@ -45,7 +46,7 @@
 	</div>
 	</div>
 	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/process/tProcessData/add.js">
+	<script type="text/javascript" src="/js/appjs/process/processData/edit.js">
 	</script>
 </body>
 </html>

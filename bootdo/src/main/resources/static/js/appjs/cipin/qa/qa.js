@@ -49,7 +49,7 @@ function load() {
 								},
 																{
 									field : 'id', 
-									title : '' 
+									title : 'id'
 								},
 
 								//								{
@@ -88,7 +88,7 @@ function load() {
 								},
 																{
 									field : 'createDate', 
-									title : '' 
+									title : '创建时间'
 								},
 																{
 									title : '操作',

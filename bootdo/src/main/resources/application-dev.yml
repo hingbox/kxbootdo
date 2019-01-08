@@ -49,3 +49,8 @@ spring:
         max-active: 100
         # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1
+  #mongo配置
+  data:
+    mongodb:
+      database: pullword
+      uri: mongodb://47.96.100.43:27017

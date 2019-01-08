@@ -1,14 +1,13 @@
 package com.bootdo.api;
 
-import com.bootdo.cipin.domain.ProcessDataDO;
 import com.bootdo.cipin.domain.QaDO;
 import com.bootdo.cipin.domain.TotalContentDO;
 import com.bootdo.cipin.service.CipinService;
 import com.bootdo.cipin.service.ProcessDataService;
 import com.bootdo.cipin.service.QaService;
 import com.bootdo.cipin.service.TotalContentService;
+import com.bootdo.test.service.WordsServiceImpl;
 import com.bootdo.util.HttpClientUtils;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +50,9 @@ public class CiPinController {
     @Autowired
     private TotalContentService totalContentService;
 
+    @Autowired
+    private WordsServiceImpl wordsService;
+
     /**
      * 获取原始数据 查询每一天的数，将返回的content 合并起来，调用第三方的接口，进行分词
      * @param reqMap
@@ -79,37 +81,6 @@ public class CiPinController {
 
         String result = HttpClientUtils.httpPostWithJson(content, "http://123.206.46.153:7911/wordcloud/", null);
         JSONObject data = JSONObject.fromObject(result);
-        String resultData = data.getString("result");
-//        //原始数据保存到t_cipin
-//        CipinDO cipinDo = new CipinDO();
-//        cipinDo.setContent(resultData);
-//        cipinDo.setPubDate(pubDate);
-//        cipinDo.setCreateDate(new Date());
-//        cipinService.save(cipinDo);
-
-        JSONArray myJsonArray = JSONArray.fromObject(resultData);
-        if(myJsonArray.size()>0){
-            for(int i=0;i<myJsonArray.size();i++){
-                JSONObject job = myJsonArray.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
-                System.out.println(job.get("name")+"="+job.get("value")+"=") ;  // 得到 每个对象中的属性值
-                ProcessDataDO processDataDO = new ProcessDataDO();
-                processDataDO.setName(job.get("name").toString());
-                processDataDO.setValue(Integer.parseInt(job.get("value").toString()));
-                processDataDO.setPubDate(pubDate);
-                processDataDO.setCreateDate(new Date());
-
-                processDataService.save(processDataDO);
-            }
-        }
-
-        //将结果存到t_cipin表中
-//        CipinDO cipinDo = new CipinDO();
-//        cipinDo.setContent(resultDate);
-//        cipinDo.setPubDate(pubDate);
-//        cipinDo.setCreateDate(new Date());
-//        cipinService.save(cipinDo);
-
-
-        return "";
+        return result;
     }
 }

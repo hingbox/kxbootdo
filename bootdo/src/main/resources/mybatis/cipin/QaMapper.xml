@@ -20,7 +20,8 @@
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="uuid != null and uuid != ''"> and uuid = #{uuid} </if>
 		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
-		  		  <if test="pubDate != null and pubDate != ''"> and DATE_FORMAT(pub_date,'%Y-%m-%d')= #{pubDate} </if>
+		  		  <if test="pubDate != null and pubDate != ''"> and DATE_FORMAT(pub_date,'%Y-%m-%d') >= #{pubDate} </if>
+			      <if test="pubDate != null and pubDate != ''"> and DATE_FORMAT(pub_date,'%Y-%m-%d') &lt;= #{endDate} </if>
 		  		  <if test="content != null and content != ''"> and content like CONCAT('%',#{content},'%') </if>
 		  		  <if test="source != null and source != ''"> and source = #{source} </if>
 		  		  <if test="stock != null and stock != ''"> and stock = #{stock} </if>
@@ -43,18 +44,19 @@
 	
  	<select id="count" resultType="int">
 		select count(*) from t_qa
-		 <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="uuid != null and uuid != ''"> and uuid = #{uuid} </if>
-		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
-		  		  <if test="pubDate != null and pubDate != ''"> and pub_date = #{pubDate} </if>
-		  		  <if test="content != null and content != ''"> and content =#{content} </if>
-		  		  <if test="source != null and source != ''"> and source = #{source} </if>
-		  		  <if test="stock != null and stock != ''"> and stock = #{stock} </if>
-		  		  <if test="code != null and code != ''"> and code = #{code} </if>
-		  		  <if test="qa != null and qa != ''"> and qa = #{qa} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		</where>
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="uuid != null and uuid != ''"> and uuid = #{uuid} </if>
+			<if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+			<if test="pubDate != null and pubDate != ''"> and DATE_FORMAT(pub_date,'%Y-%m-%d') >= #{pubDate} </if>
+			<if test="pubDate != null and pubDate != ''"> and DATE_FORMAT(pub_date,'%Y-%m-%d') &lt;= #{endDate} </if>
+			<if test="content != null and content != ''"> and content like CONCAT('%',#{content},'%') </if>
+			<if test="source != null and source != ''"> and source = #{source} </if>
+			<if test="stock != null and stock != ''"> and stock = #{stock} </if>
+			<if test="code != null and code != ''"> and code = #{code} </if>
+			<if test="qa != null and qa != ''"> and qa = #{qa} </if>
+			<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		</where>
 	</select>
 	 
 	<insert id="save" parameterType="com.bootdo.cipin.domain.QaDO" useGeneratedKeys="true" keyProperty="id">

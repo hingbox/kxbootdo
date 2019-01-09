@@ -12,7 +12,7 @@
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="content != null and content != ''"> and content = #{content} </if>
-		  		  <if test="pubDate != null and pubDate != ''"> and pub_date = #{pubDate} </if>
+		  		  <if test="pubDate != null and pubDate != ''"> and pubDate = #{pubDate} </if>
 		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
 		  		</where>
         <choose>

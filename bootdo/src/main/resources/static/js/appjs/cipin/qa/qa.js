@@ -33,7 +33,11 @@ function load() {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
 								offset:params.offset,
-					           content:$('#searchName').val(),
+					            content:$('#searchName').val(),
+							    pubDate:$('#dtp_input1').val(),
+								endDate:$('#dtp_input2').val(),
+								nickName:$('#nickName').val(),
+								stock:$('#stock').val(),
 					           // username:$('#searchName').val()
 							};
 						},
@@ -201,3 +205,4 @@ function batchRemove() {
 
 	});
 }
+
